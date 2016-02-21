@@ -6,7 +6,13 @@ import React from 'react';
 
 class Page extends React.Component {
   render() {
-    return (<div>{Object.keys(this.props.katas.groups)}</div>);
+    const groupNames = Object.keys(this.props.katas.groups);
+    return (
+      <div>
+        <h1>ES6 Katas</h1>
+        {groupNames.map(name => <h2>{name}</h2>)}
+      </div>
+    );
   }
 }
 
