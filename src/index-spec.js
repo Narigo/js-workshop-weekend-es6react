@@ -40,10 +40,7 @@ function loadKatasJsonFrom(url) {
 describe('loading the katas JSON', () => {
 
   it('works', () => {
-    return loadKatasJsonFrom(KATAS_URL)
-      .then(function (katasJson) {
-        assert('groups' in katasJson);
-      });
+    return loadKatasJsonFrom(KATAS_URL);
   });
 
   it('fails when using a wrong URL', () => {
