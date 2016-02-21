@@ -1,20 +1,16 @@
 
-var fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-function loadKatasJsonFrom(url) {
+export default function loadKatasJsonFrom(url) {
   return fetch(url)
-    .then(function (res) {
-      return res.json();
-    })
-    .catch(function () {
+    .then((res) => res.json())
+    .catch(() => {
       throw 'Error loading katas.';
     })
-    .then(function (json) {
+    .then((json) => {
       if ('groups' in json) {
         return json;
       }
       throw 'Invalid JSON format.';
     });
 }
-
-module.exports = loadKatasJsonFrom;
