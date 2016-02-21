@@ -1,5 +1,7 @@
 var assert = require('assert');
-var fetch = require('node-fetch');
+var hamjest = require('hamjest');
+var promiseThat = hamjest.promiseThat;
+var isRejectedWith = hamjest.isRejectedWith;
 
 describe('test setup', () => {
 
@@ -17,6 +19,8 @@ var INVALID_URL = 'http://katas.tddbin.com/katas/es6/language/__all__.json';
 // 2) load a wrong URL
 // 3) load wrong structured file
 
+var fetch = require('node-fetch');
+
 function loadKatasJsonFrom(url) {
   return fetch(url)
     .then(function (res) {
@@ -25,6 +29,9 @@ function loadKatasJsonFrom(url) {
     .then(function (json) {
       assert('groups' in json);
       return json;
+    })
+    .catch(function () {
+      throw 'Error loading katas.';
     });
 }
 
@@ -38,36 +45,18 @@ describe('loading the katas JSON', () => {
   });
 
   it('fails when using a wrong URL', () => {
-    var count = 0;
-    return loadKatasJsonFrom(WRONG_URL)
-      .catch(function () {
-        count++;
-      })
-      .then(function () {
-        assert(count === 1);
-      });
+    return promiseThat(loadKatasJsonFrom(WRONG_URL),
+      isRejectedWith('Error loading katas.'));
   });
 
   it('fails when using a non existent URL', () => {
-    var count = 0;
-    return loadKatasJsonFrom(NON_EXISTENT_URL)
-      .catch(function () {
-        count++;
-      })
-      .then(function () {
-        assert(count === 1);
-      });
+    return promiseThat(loadKatasJsonFrom(NON_EXISTENT_URL),
+      isRejectedWith('Error loading katas.'));
   });
 
   it('fails when getting an invalid URL', () => {
-    var count = 0;
-    return loadKatasJsonFrom(INVALID_URL)
-      .catch(function () {
-        count++;
-      })
-      .then(function () {
-        assert(count === 1);
-      });
+    return promiseThat(loadKatasJsonFrom(INVALID_URL),
+      isRejectedWith('Error loading katas.'));
   });
 
 });
