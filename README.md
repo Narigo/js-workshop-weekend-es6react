@@ -8,8 +8,8 @@ npm watch:test    # watch tests on file changes
 ```
 
 some additional learnings
-1. create index-spec.js to see if test setup is working at all
+1. create grouped-katas-spec.js to see if test setup is working at all
 2. exclude node_modules for faster indexing
 3. uncle bob -> clean code angucken
 4. add './node_modules/.bin' to PATH
-5. use 'babel src/index.js' to see what gets generated
+5. use 'babel src/grouped-katas.js' to see what gets generated
