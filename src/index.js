@@ -1,7 +1,13 @@
 
 import fetch from 'node-fetch';
 
-export default function loadKatasJsonFrom(url) {
+export default class GroupedKatas {
+  load(url) {
+    return loadKatasJsonFrom(url);
+  }
+}
+
+function loadKatasJsonFrom(url) {
   return fetch(url)
     .then((res) => res.json())
     .catch(() => {

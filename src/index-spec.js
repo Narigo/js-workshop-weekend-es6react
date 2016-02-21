@@ -17,7 +17,11 @@ const NON_EXISTENT_URL = 'http://wrong.url.test/katas.json';
 // 1) load it correctly
 // 2) load a wrong URL
 // 3) load wrong structured file
-import loadKatasJsonFrom from './index';
+import GroupedKatas from './index';
+
+function loadKatasJsonFrom(url) {
+  return new GroupedKatas().load(url);
+}
 
 describe('loading the katas JSON', () => {
 
