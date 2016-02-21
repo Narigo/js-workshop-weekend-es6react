@@ -18,24 +18,7 @@ var INVALID_URL = 'http://katas.tddbin.com/katas/es6/language/__all__.json';
 // 1) load it correctly
 // 2) load a wrong URL
 // 3) load wrong structured file
-
-var fetch = require('node-fetch');
-
-function loadKatasJsonFrom(url) {
-  return fetch(url)
-    .then(function (res) {
-      return res.json();
-    })
-    .catch(function () {
-      throw 'Error loading katas.';
-    })
-    .then(function (json) {
-      if ('groups' in json) {
-        return json;
-      }
-      throw 'Invalid JSON format.';
-    });
-}
+var loadKatasJsonFrom = require('./index');
 
 describe('loading the katas JSON', () => {
 
