@@ -17,8 +17,7 @@ export default class KataGroupsComponent extends React.Component {
         </div>
 
         <div id="list" className="pure-u-1">
-          {/*  email-item-selected email-item-unread */
-            selectedGroup.items.map(item => <KataListItem name={item.name}/>)}
+          {selectedGroup.items.map(item => <KataListItem key={item.name} name={item.name}/>)}
         </div>
 
         <Kata kata={selectedKata}/>
@@ -52,6 +51,7 @@ class KataGroupsList extends React.Component {
 
 class KataListItem extends React.Component {
   render() {
+    /*  email-item-selected email-item-unread */
     return (
       <div className="email-item pure-g">
         <div className="pure-u-3-4">
@@ -79,7 +79,8 @@ class Kata extends React.Component {
             </div>
 
             <div className="email-content-controls pure-u-1-2">
-              <a href={`http://tddbin.com/#?kata=es6/language/${kata.path}`} className="secondary-button pure-button">Open in TDDbin</a>
+              <a href={`http://tddbin.com/#?kata=es6/language/${kata.path}`} className="secondary-button pure-button">Open
+                in TDDbin</a>
             </div>
           </div>
 
