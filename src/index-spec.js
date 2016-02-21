@@ -26,12 +26,14 @@ function loadKatasJsonFrom(url) {
     .then(function (res) {
       return res.json();
     })
-    .then(function (json) {
-      assert('groups' in json);
-      return json;
-    })
     .catch(function () {
       throw 'Error loading katas.';
+    })
+    .then(function (json) {
+      if ('groups' in json) {
+        return json;
+      }
+      throw 'Invalid JSON format.';
     });
 }
 
@@ -56,7 +58,7 @@ describe('loading the katas JSON', () => {
 
   it('fails when getting an invalid URL', () => {
     return promiseThat(loadKatasJsonFrom(INVALID_URL),
-      isRejectedWith('Error loading katas.'));
+      isRejectedWith('Invalid JSON format.'));
   });
 
 });
