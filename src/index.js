@@ -1,9 +1,8 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 import GroupedKatas from './grouped-katas';
 import KataGroupsComponent from './component/kata-groups';
 import {KATAS_URL} from './config';
-
-import React from 'react';
 
 class Page extends React.Component {
   render() {
