@@ -4,51 +4,58 @@ export default class KataGroupsComponent extends React.Component {
   render() {
     const groups = this.props.groups;
     const groupNames = Object.keys(groups);
+    const selectedGroup = groups['Template strings'];
+    const groupList = groupNames.map(name => groups[name]);
 
     return (
       <div id="layout" className="content pure-g">
         <div id="nav" className="pure-u">
           <a href="#" className="nav-menu-button">Menu</a>
 
-          <div className="nav-inner">
-            <div className="pure-menu">
-              <ul className="pure-menu-list">
-                <li className="pure-menu-heading">Kata groups</li>
-                <li className="pure-menu-item">
-                </li>
-                {groupNames.map(groupName => <li className="pure-menu-item" key={groupName}>
-                  <a href="#" className="pure-menu-link">{groupName} <span className="email-count">({groups[groupName].items.length})</span></a>
-                </li>)}
-              </ul>
-            </div>
-          </div>
+          <KataGroupsList groupList={groupList}/>
         </div>
 
         <div id="list" className="pure-u-1">
-          <div className="email-item email-item-selected pure-g">
-            <div className="pure-u-3-4">
-              <h5 className="email-name">basics</h5>
-            </div>
-          </div>
-          <div className="email-item email-item-unread pure-g">
-            <div className="pure-u-3-4">
-              <h5 className="email-name">multiline</h5>
-            </div>
-          </div>
-          <div className="email-item pure-g">
-            <div className="pure-u-3-4">
-              <h5 className="email-name">tagged</h5>
-            </div>
-          </div>
-          <div className="email-item pure-g">
-            <div className="pure-u-3-4">
-              <h5 className="email-name">`raw` property</h5>
-            </div>
-          </div>
+          {/*  email-item-selected email-item-unread */
+            selectedGroup.items.map(item => <KataListItem name={item.name}/>)}
         </div>
 
         <Kata />
 
+      </div>
+    );
+  }
+}
+
+class KataGroupsList extends React.Component {
+  render() {
+    return (
+      <div className="nav-inner">
+        <div className="pure-menu">
+          <ul className="pure-menu-list">
+            <li className="pure-menu-heading">Kata groups</li>
+            <li className="pure-menu-item">
+            </li>
+            {this.props.groupList.map(group =>
+              <li className="pure-menu-item" key={group.name}>
+                <a href="#" className="pure-menu-link">{group.name} <span
+                  className="email-count">({group.items.length})</span></a>
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
+    );
+  }
+}
+
+class KataListItem extends React.Component {
+  render() {
+    return (
+      <div className="email-item pure-g">
+        <div className="pure-u-3-4">
+          <h5 className="email-name">{this.props.name}</h5>
+        </div>
       </div>
     );
   }
