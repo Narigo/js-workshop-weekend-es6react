@@ -5,6 +5,7 @@ export default class KataGroupsComponent extends React.Component {
     const groups = this.props.groups;
     const groupNames = Object.keys(groups);
     const selectedGroup = groups['Template strings'];
+    const selectedKata = selectedGroup.items[0];
     const groupList = groupNames.map(name => groups[name]);
 
     return (
@@ -20,7 +21,7 @@ export default class KataGroupsComponent extends React.Component {
             selectedGroup.items.map(item => <KataListItem name={item.name}/>)}
         </div>
 
-        <Kata />
+        <Kata kata={selectedKata}/>
 
       </div>
     );
@@ -63,20 +64,22 @@ class KataListItem extends React.Component {
 
 class Kata extends React.Component {
   render() {
+    const kata = this.props.kata;
+
     return (
       <div id="main" className="pure-u-1">
         <div className="email-content">
           <div className="email-content-header pure-g">
             <div className="pure-u-1-2">
-              <h1 className="email-content-title">Template strings - basics</h1>
+              <h1 className="email-content-title">{kata.groupName} - {kata.name}</h1>
 
               <p className="email-content-subtitle">
-                A template string, is wrapped in backticks.
+                {kata.description}
               </p>
             </div>
 
             <div className="email-content-controls pure-u-1-2">
-              <button className="secondary-button pure-button">Open in TDDbin</button>
+              <a href={`http://tddbin.com/#?kata=es6/language/${kata.path}`} className="secondary-button pure-button">Open in TDDbin</a>
             </div>
           </div>
 
