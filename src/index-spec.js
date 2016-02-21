@@ -1,7 +1,5 @@
 var assert = require('assert');
-var hamjest = require('hamjest');
-var promiseThat = hamjest.promiseThat;
-var isRejectedWith = hamjest.isRejectedWith;
+var {promiseThat,isRejectedWith} = require('hamjest');
 
 describe('test setup', () => {
 
