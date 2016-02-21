@@ -20,6 +20,10 @@ function loadKatasJsonFrom(url) {
   return fetch(url)
     .then(function (res) {
       return res.json();
+    })
+    .then(function (json) {
+      assert('groups' in json);
+      return json;
     });
 }
 
@@ -35,6 +39,17 @@ describe('loading the katas JSON', () => {
   it('fails when using a wrong URL', () => {
     var count = 0;
     return loadKatasJsonFrom(WRONG_URL)
+      .catch(function () {
+        count++;
+      })
+      .then(function () {
+        assert(count === 1);
+      });
+  });
+
+  it('fails when getting an invalid URL', () => {
+    var count = 0;
+    return loadKatasJsonFrom(INVALID_URL)
       .catch(function () {
         count++;
       })
