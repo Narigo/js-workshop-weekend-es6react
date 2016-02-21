@@ -2,7 +2,8 @@ import React from 'react';
 
 export default class KataGroupsComponent extends React.Component {
   render() {
-    const groupNames = this.props.groupNames;
+    const groups = this.props.groups;
+    const groupNames = Object.keys(groups);
 
     return (
       <div id="layout" className="content pure-g">
@@ -16,7 +17,7 @@ export default class KataGroupsComponent extends React.Component {
                 <li className="pure-menu-item">
                 </li>
                 {groupNames.map(groupName => <li className="pure-menu-item" key={groupName}>
-                  <a href="#" className="pure-menu-link">{groupName} <span className="email-count">(2)</span></a>
+                  <a href="#" className="pure-menu-link">{groupName} <span className="email-count">({groups[groupName].items.length})</span></a>
                 </li>)}
               </ul>
             </div>

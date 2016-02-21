@@ -6,11 +6,11 @@ import {KATAS_URL} from './config';
 
 class Page extends React.Component {
   render() {
-    const groupNames = Object.keys(this.props.katas.groups);
+    const groups = this.props.katas.groups;
     return (
       <div>
         <h1>ES6 Katas</h1>
-        <KataGroupsComponent groupNames={groupNames} />
+        <KataGroupsComponent groups={groups} />
       </div>
     );
   }
