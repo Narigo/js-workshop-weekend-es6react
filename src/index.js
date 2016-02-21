@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
-import GroupedKatas from './grouped-katas.js';
+import GroupedKatas from './grouped-katas';
+import KataGroupsComponent from './component/kata-groups';
 import {KATAS_URL} from './config';
 
 import React from 'react';
@@ -10,7 +11,7 @@ class Page extends React.Component {
     return (
       <div>
         <h1>ES6 Katas</h1>
-        {groupNames.map(name => <h2>{name}</h2>)}
+        <KataGroupsComponent groupNames={groupNames} />
       </div>
     );
   }
