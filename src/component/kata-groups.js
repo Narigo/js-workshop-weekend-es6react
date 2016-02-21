@@ -4,9 +4,10 @@ export default class KataGroupsComponent extends React.Component {
   render() {
     const groups = this.props.groups;
     const groupNames = Object.keys(groups);
-    const selectedGroup = groups['Template strings'];
-    const selectedKata = selectedGroup.items[0];
     const groupList = groupNames.map(name => groups[name]);
+    let selected = 'Template strings';
+    let selectedGroup = groups[selected];
+    let selectedKata = selectedGroup.items[0];
 
     return (
       <div id="layout" className="content pure-g">
