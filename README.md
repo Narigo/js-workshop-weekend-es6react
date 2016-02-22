@@ -15,6 +15,7 @@ some additional learnings
 4. add `./node_modules/.bin` to `PATH`
 5. use `babel src/grouped-katas.js` to see what gets generated
 6. opinion: have tests in same directory as source to get rid of `../../../src/some/where/source.js` imports
+7. renderer = TestUtils.createRenderer() and renderer.getRenderOutput() to check virtual dom
 
 Question
-1. transform via babel or browserify (reactify)?
+1. transform via babel or browserify (reactify)? -> reactify makes sense for consistency (using babelify+reactify)
